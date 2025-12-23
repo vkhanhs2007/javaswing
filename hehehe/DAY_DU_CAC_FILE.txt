@@ -1,0 +1,235 @@
+═════════════════════════════════════════════════════════════════════════════
+                    PHẦN MỀM QUẢN LÍ QUÁN CAFE - JAVA SWING
+═════════════════════════════════════════════════════════════════════════════
+
+🎯 CÁC FILE ĐÃ ĐƯỢC TẠO
+
+📁 THƯỞNG MÃ NGUỒN (src/com/cafe/)
+│
+├─ 📂 config/
+│  └─ DatabaseConfig.java              ✓ Kết nối SQL Server (URL, username, password)
+│
+├─ 📂 model/                           (Các lớp đại diện cho dữ liệu)
+│  ├─ Table.java                       ✓ Bàn ăn (tableId, name, capacity, status)
+│  ├─ MenuItem.java                    ✓ Món ăn (id, name, price, category, discount)
+│  ├─ Invoice.java                     ✓ Hóa đơn (id, tableId, total, status)
+│  ├─ InvoiceDetail.java               ✓ Chi tiết hóa đơn (itemId, qty, price)
+│  ├─ Customer.java                    ✓ Khách hàng (id, phone, name, points)
+│  └─ User.java                        ✓ Người dùng (username, password, role)
+│
+├─ 📂 dao/                             (Truy cập cơ sở dữ liệu - CRUD)
+│  ├─ TableDAO.java                    ✓ Quản lí bàn (add, update, delete, list)
+│  ├─ MenuItemDAO.java                 ✓ Quản lí menu (add, update, delete, list)
+│  ├─ InvoiceDAO.java                  ✓ Quản lí hóa đơn (create, update, query)
+│  ├─ CustomerDAO.java                 ✓ Quản lí khách hàng (getByPhone, addPoints)
+│  └─ UserDAO.java                     ✓ Quản lí người dùng (login, list)
+│
+├─ 📂 ui/                              (Giao diện người dùng - GUI)
+│  ├─ LoginFrame.java                  ✓ Màn hình đăng nhập (2 field + 2 button)
+│  ├─ MainFrame.java                   ✓ Màn hình chính (danh sách bàn, menu bar)
+│  ├─ OrderFrame.java                  ✓ Gọi món (chọn menu, add, remove, save)
+│  ├─ PaymentFrame.java                ✓ Thanh toán (tính tiền, nhập khách, in bill)
+│  ├─ MenuManagementFrame.java         ✓ Quản lí menu (table + add/edit/delete)
+│  ├─ InvoiceManagementFrame.java      ✓ Quản lí hóa đơn (filter by date)
+│  ├─ StatisticsFrame.java             ✓ Thống kê (top 10 items)
+│  └─ UserManagementFrame.java         ✓ Quản lí người (Admin only)
+│
+└─ 📂 util/                            (Tiện ích chung)
+   ├─ UIUtils.java                     ✓ Helper UI (dialog, message, format)
+   ├─ DiscountUtils.java               ✓ Tính toán giảm giá & điểm
+   └─ ReportUtils.java                 ✓ Thống kê doanh số
+
+📋 TẤT CẢ: 20 FILE JAVA ✓
+
+═════════════════════════════════════════════════════════════════════════════
+
+📂 THƯỞNG DATABASE & SCRIPT
+
+├─ database_setup.sql                  ✓ SQL script tạo database
+│                                        - Tạo 6 tables (Tables, MenuItems, Customers, Invoices, InvoiceDetails, Users)
+│                                        - Insert dữ liệu mẫu (8 bàn, 15 món, 3 user)
+│                                        - Create indexes
+│
+├─ TAI_JDBC_DRIVER.txt                ✓ Hướng dẫn tải SQL Server JDBC Driver
+├─ QUICK_START.txt                    ✓ Hướng dẫn bắt đầu nhanh (5 bước)
+├─ HUONG_DAN_SETUP.txt                ✓ Hướng dẫn setup chi tiết (10 bước)
+├─ README.md                          ✓ Tài liệu dự án (Markdown)
+├─ PROJECT_SUMMARY.txt                ✓ Tóm tắt toàn bộ dự án (file này)
+│
+├─ run.bat                            ✓ Script chạy trên Windows
+├─ run.sh                             ✓ Script chạy trên Linux/Mac
+│
+└─ 📂 lib/                            (Cần tải thêm)
+   └─ (CHƯA CÓ - TẢI JDBC DRIVER) mssql-jdbc-11.2.1.jre11.jar
+
+═════════════════════════════════════════════════════════════════════════════
+
+📖 HƯỚNG DẪN SETUP TỪNG BƯỚC
+
+BƯỚC 1: CÀI SQL SERVER VÀ JAVA
+  → Tải: https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+  → Tải: https://www.oracle.com/java/technologies/downloads/
+  → Setup bình thường (password SA = 123456789)
+
+BƯỚC 2: TẢI JDBC DRIVER
+  → Đọc file: TAI_JDBC_DRIVER.txt (hướng dẫn chi tiết)
+  → Hoặc: https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server
+  → Copy vào: lib/mssql-jdbc-11.2.1.jre11.jar
+
+BƯỚC 3: TẠO DATABASE
+  → Mở SQL Server Management Studio (SSMS)
+  → Đăng nhập: sa / 123456789
+  → New Query > Open database_setup.sql
+  → F5 (Execute)
+  → Xem kết quả: "Database created successfully!"
+
+BƯỚC 4: CHẠY CHƯƠNG TRÌNH
+  → Windows: Double-click run.bat
+  → Linux/Mac: chmod +x run.sh && ./run.sh
+  → Hoặc chạy manual: javac -cp "lib/*" ... && java -cp ...
+
+BƯỚC 5: ĐĂNG NHẬP
+  → Username: admin
+  → Password: 123456789
+
+═════════════════════════════════════════════════════════════════════════════
+
+📝 FILE HƯỚNG DẪN - ĐỌC THEO THỨ TỰ:
+
+1️⃣  PROJECT_SUMMARY.txt         ← Bạn đang đọc (tóm tắt)
+2️⃣  QUICK_START.txt             ← Bắt đầu nhanh (5 bước)
+3️⃣  TAI_JDBC_DRIVER.txt         ← Tải JDBC Driver
+4️⃣  HUONG_DAN_SETUP.txt         ← Setup chi tiết (nếu gặp lỗi)
+5️⃣  README.md                   ← Tài liệu đầy đủ
+
+═════════════════════════════════════════════════════════════════════════════
+
+🔐 TÀI KHOẢN ĐĂNG NHẬP
+
+Username        Password        Vai Trò
+─────────────────────────────────────────
+admin           123456789       Admin (Quản trị viên)
+staff1          123456789       Nhân viên
+staff2          123456789       Nhân viên
+
+═════════════════════════════════════════════════════════════════════════════
+
+⚙️ CẤU HÌNH DATABASE
+
+Server: localhost
+Port: 1433
+Database: CafeManager
+Username: sa
+Password: 123456789
+
+═════════════════════════════════════════════════════════════════════════════
+
+✨ CHỨC NĂNG CHÍNH
+
+✓ Quản lí 8 bàn ăn
+✓ Gọi món & thanh toán
+✓ Quản lí menu (15+ món)
+✓ Tích lũy điểm (1000đ = 1 điểm)
+✓ Giảm giá theo giờ
+✓ Chuyển bàn
+✓ Lịch sử hóa đơn
+✓ Thống kê
+✓ Quản lí người dùng (Admin)
+✓ In hóa đơn
+
+═════════════════════════════════════════════════════════════════════════════
+
+🛠️ CÔNG NGHỆ SỬ DỤNG
+
+├─ Java Swing         → Giao diện người dùng
+├─ SQL Server JDBC    → Kết nối database
+├─ SQL Server         → Lưu trữ dữ liệu
+├─ OOP Pattern        → Thiết kế code chuyên nghiệp
+├─ DAO Pattern        → Truy cập database
+├─ Model-View Pattern → Tách biệt UI & logic
+└─ UTF-8 Encoding     → Hỗ trợ tiếng Việt
+
+═════════════════════════════════════════════════════════════════════════════
+
+📊 DỮ LIỆU MẪUĐÃ INSERT
+
+✓ Tables: 8 bàn ăn (Bàn 1 - 8)
+✓ MenuItems: 15 món (cà phê, nước, thức ăn)
+✓ Users: 3 người dùng (1 admin, 2 staff)
+✓ Customers: 0 (sẽ thêm khi gọi món)
+✓ Invoices: 0 (sẽ thêm khi thanh toán)
+
+═════════════════════════════════════════════════════════════════════════════
+
+🚀 BƯỚC TIẾP THEO NGAY BÂY GIỜ
+
+1. Đọc file: QUICK_START.txt (5 phút)
+2. Tải JDBC Driver: TAI_JDBC_DRIVER.txt (10 phút)
+3. Chạy database_setup.sql (2 phút)
+4. Chạy run.bat hoặc run.sh (3 phút)
+5. Đăng nhập & Sử dụng! (bắt đầu ngay)
+
+═════════════════════════════════════════════════════════════════════════════
+
+❓ TROUBLESHOOTING
+
+Lỗi                           → Giải Pháp
+────────────────────────────────────────────────────────────
+Cannot find SQL Server        → Kiểm tra SQL Server chạy ở port 1433
+Login failed for sa           → Kiểm tra password: 123456789
+No suitable driver            → Copy JDBC Driver vào lib/
+Failed to compile             → Kiểm tra Java version >= 11
+Cannot create database        → Chạy SSMS với admin rights
+
+Xem chi tiết: HUONG_DAN_SETUP.txt
+
+═════════════════════════════════════════════════════════════════════════════
+
+📞 CẦN GIÚP ĐỠ?
+
+1. Kiểm tra file: QUICK_START.txt
+2. Kiểm tra file: TAI_JDBC_DRIVER.txt
+3. Kiểm tra file: HUONG_DAN_SETUP.txt
+4. Chạy: database_setup.sql lại
+5. Kiểm tra SQL Server chạy: Services > SQL Server (MSSQL*) = Running
+
+═════════════════════════════════════════════════════════════════════════════
+
+✅ DANH SÁCH KIỂM TRA
+
+□ JDK 11+ cài đặt          → javac -version
+□ SQL Server chạy          → Services (SQL Server)
+□ JDBC Driver trong lib/   → Check lib/ folder
+□ Database được tạo        → SSMS > Databases > CafeManager
+□ Java files biên dịch     → Chạy run.bat
+□ Chương trình khởi động   → LoginFrame hiển thị
+□ Đăng nhập thành công     → MainFrame hiển thị
+
+═════════════════════════════════════════════════════════════════════════════
+
+🎉 CHÚC MỪNG!
+
+Bạn đã sở hữu một hệ thống quản lí quán cafe hoàn chỉnh!
+
+Bắt đầu ngay:
+1. Đọc QUICK_START.txt (5 phút)
+2. Chạy chương trình
+3. Đăng nhập & Thử nghiệm
+
+═════════════════════════════════════════════════════════════════════════════
+
+THÔNG TIN PHIÊN BẢN
+
+Phiên bản:        1.0
+Ngày tạo:        2025
+Ngôn ngữ:        Java
+Framework:       Swing
+Database:        SQL Server
+Trạng thái:      ✅ HOÀN THÀNH
+
+═════════════════════════════════════════════════════════════════════════════
+
+                    Cảm ơn bạn đã sử dụng!
+                    Happy coding! 🚀
+
+═════════════════════════════════════════════════════════════════════════════

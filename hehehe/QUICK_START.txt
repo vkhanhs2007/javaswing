@@ -1,0 +1,169 @@
+╔══════════════════════════════════════════════════════════════╗
+║  PHẦN MỀM QUẢN LÍ QUÁN CAFE - HƯỚNG DẪN BẮT ĐẦU NHANH      ║
+╚══════════════════════════════════════════════════════════════╝
+
+## BƯỚC 1: CHUẨN BỊ HỆ THỐNG
+
+✓ Cài SQL Server 2019 Express (Free)
+  - Download: https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+  - Password SA: 123456789
+  - Chọn Mixed Authentication
+
+✓ Cài Java JDK 11+
+  - Download: https://www.oracle.com/java/technologies/downloads/
+
+✓ Tải SQL Server JDBC Driver
+  - Download: https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server
+  - Giải nén, copy file .jar vào thư mục: lib/
+
+## BƯỚC 2: TẠO DATABASE
+
+Cách 1 - Dùng SQL Server Management Studio (Dễ nhất):
+1. Mở SQL Server Management Studio (SSMS)
+2. Connect với: 
+   - Server: localhost
+   - Username: sa
+   - Password: 123456789
+3. New Query
+4. Open file: database_setup.sql
+5. Nhấn Ctrl+A rồi F5 (Execute)
+6. Xem kết quả: "Database and tables created successfully!"
+
+Cách 2 - Dùng Command Line:
+  sqlcmd -S localhost -U sa -P 123456789 -i database_setup.sql
+
+## BƯỚC 3: CHẠY CHƯƠNG TRÌNH
+
+### Trên Windows:
+  Double-click file: run.bat
+  
+  Hoặc chạy manual:
+  javac -cp "lib/*" -d bin src\com\cafe\config\*.java src\com\cafe\model\*.java src\com\cafe\dao\*.java src\com\cafe\util\*.java src\com\cafe\ui\*.java
+  java -cp "bin;lib/*" com.cafe.ui.LoginFrame
+
+### Trên Linux/Mac:
+  chmod +x run.sh
+  ./run.sh
+
+## BƯỚC 4: ĐĂNG NHẬP
+
+Chọn một tài khoản sau:
+
+┌─ TÀI KHOẢN ADMIN (Quản Trị Viên) ─┐
+│ Username: admin                   │
+│ Password: 123456789              │
+│ Quyền: Toàn quyền                │
+└──────────────────────────────────┘
+
+┌─ TÀI KHOẢN NHÂN VIÊN ────────────┐
+│ Username: staff1 hoặc staff2      │
+│ Password: 123456789              │
+│ Quyền: Chức năng chính            │
+└──────────────────────────────────┘
+
+## BƯỚC 5: SỬ DỤNG CHƯƠNG TRÌNH
+
+### QUY TRÌNH GỌI MÓN:
+1. Nhấn nút "Gọi Món"
+2. Chọn bàn từ danh sách
+3. Chọn loại món (Cà Phê, Nước Uống, Thức Ăn)
+4. Click vào món, nhập số lượng, "Thêm Vào Hóa Đơn"
+5. Xem chi tiết hóa đơn (tổng tiền, điểm tích lũy)
+6. Nhấn "Thanh Toán" để hoàn tất
+
+### THANH TOÁN:
+1. Nhập số điện thoại khách (tùy chọn)
+2. Chọn có dùng điểm hay không
+3. Nhấn "Xác Nhận Thanh Toán"
+4. Chọn "Có" để in hóa đơn
+
+### QUẢN LÍ (từ menu chính):
+- Menu > Quản Lí Bàn: Thêm/Xóa bàn
+- Menu > Quản Lí Thực Đơn: Thêm/Sửa/Xóa món
+- Menu > Quản Lí Hóa Đơn: Xem lịch sử
+- Menu > Báo Cáo > Thống Kê: Xem top món được gọi
+
+## LƯỚI CẮM PHÍM
+
+┌─ MẮM PHÍM ──────────────┐
+│ F5: Làm mới danh sách   │
+│ Ctrl+Q: Đóng cửa sổ     │
+│ Right Click: Menu nhanh  │
+└─────────────────────────┘
+
+## KHẮC PHỤC LỖI
+
+❌ Lỗi: "Cannot find SQL Server"
+   → Kiểm tra SQL Server có chạy không
+   → Services > SQL Server (MSSQL*) status = Running
+
+❌ Lỗi: "Login failed for user 'sa'"
+   → Kiểm tra password: 123456789
+   → Mixed Authentication có bật không
+
+❌ Lỗi: "No suitable driver found"
+   → Kiểm tra file .jar trong lib/
+   → Kiểm tra CLASSPATH
+
+❌ Lỗi: "Cannot create database"
+   → Chạy SSMS với admin
+   → Kiểm tra quyền của user sa
+
+## THỐNG TIN ĐẦU VÀO
+
+┌─ DỮ LIỆU MẪU ─────────────────┐
+│ Bàn: 8 bàn (Bàn 1 - Bàn 8)   │
+│ Món: 15 món                   │
+│ Người dùng: 3 tài khoản       │
+└───────────────────────────────┘
+
+## CẤU TRÚC THƯ MỤC
+
+cafe-management/
+├── src/                      (Mã nguồn Java)
+│   └── com/cafe/
+│       ├── config/           (Cấu hình DB)
+│       ├── model/            (Model/Entity)
+│       ├── dao/              (Truy cập CSDL)
+│       ├── ui/               (Giao diện)
+│       └── util/             (Tiện ích)
+├── lib/                      (SQL Server Driver)
+├── bin/                      (Class compiled)
+├── run.bat / run.sh          (Script chạy)
+├── database_setup.sql        (SQL tạo CSDL)
+├── README.md                 (Tài liệu)
+└── HUONG_DAN_SETUP.txt      (Chi tiết setup)
+
+## CÁC CHỨC NĂNG CHÍNH
+
+✅ Quản lí 8 bàn ăn
+✅ Gọi món & Thanh toán
+✅ Quản lí menu (15+ món)
+✅ Tích lũy điểm (1000đ = 1 điểm)
+✅ Giảm giá theo giờ
+✅ Chuyển bàn
+✅ Lịch sử hóa đơn
+✅ Thống kê món được gọi
+✅ Quản lí người dùng (Admin)
+✅ In hóa đơn
+
+## YÊU CẦU PHẦN CỨNG
+
+- Windows 7+, Linux, MacOS
+- RAM: 2GB tối thiểu
+- Ổ cứng: 500MB
+- Internet: Không cần
+
+## LIÊN HỆ
+
+Nếu gặp vấn đề:
+1. Đọc file HUONG_DAN_SETUP.txt
+2. Kiểm tra database_setup.sql đã chạy
+3. Kiểm tra SQL Server chạy ở localhost:1433
+4. Kiểm tra Java version >= 11
+
+═════════════════════════════════════════════════════════════
+
+            ✨ CHÚC BẠN SỬ DỤNG THÀNH CÔNG! ✨
+
+═════════════════════════════════════════════════════════════

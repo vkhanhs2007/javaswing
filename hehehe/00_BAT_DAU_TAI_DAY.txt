@@ -1,0 +1,291 @@
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                                                                             ║
+║           ✅ HOÀN TẤT: DỰ ÁN QUẢN LÍ QUÁN CAFE (JAVA SWING)               ║
+║                                                                             ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+
+📂 VỊ TRÍ DỰ ÁN
+
+  d:\DO_AN_QL_CAFE\hehehe\
+
+
+🎯 NHỮNG GÌ ĐÃ ĐƯỢC TẠO
+
+
+1. ✅ JAVA SOURCE CODE (20 files)
+   
+   📁 src/com/cafe/
+   ├── config/       (1 file)   - Kết nối Database
+   ├── model/        (6 files)  - Các lớp Entity (Table, MenuItem, Invoice, etc)
+   ├── dao/          (5 files)  - Truy cập database (CRUD)
+   ├── ui/           (8 files)  - Giao diện người dùng (Swing JFrame)
+   └── util/         (3 files)  - Tiện ích (UI, Discount, Report)
+
+
+2. ✅ DATABASE SCRIPT
+   
+   📄 database_setup.sql
+   - Tạo database CafeManager
+   - 6 tables: Tables, MenuItems, Customers, Invoices, InvoiceDetails, Users
+   - Insert dữ liệu mẫu (8 bàn, 15 món, 3 người dùng)
+   - Indexes cho performance
+
+
+3. ✅ SCRIPT CHẠY
+   
+   📄 run.bat       (Windows)
+   📄 run.sh        (Linux/Mac)
+
+
+4. ✅ TÀI LIỆU HƯỚNG DẪN
+   
+   📄 QUICK_START.txt           - Bắt đầu nhanh (5 bước)
+   📄 TAI_JDBC_DRIVER.txt       - Hướng dẫn tải JDBC Driver
+   📄 HUONG_DAN_SETUP.txt       - Setup chi tiết (10 bước)
+   📄 README.md                 - Tài liệu dự án
+   📄 PROJECT_SUMMARY.txt       - Tóm tắt dự án
+   📄 DAY_DU_CAC_FILE.txt       - Danh sách các file
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+🚀 BẮT ĐẦU TRONG 10 PHÚT
+
+
+Bước 1: CÀI SQL SERVER & JAVA (5 phút)
+   □ Tải SQL Server 2019 Express: https://www.microsoft.com/en-us/sql-server
+   □ Tải Java JDK 11+: https://www.oracle.com/java/technologies/downloads/
+   □ Cài đặt: Chọn SQL Server + Mixed Authentication + Password: 123456789
+
+
+Bước 2: TẢI JDBC DRIVER (3 phút)
+   □ Đọc file: TAI_JDBC_DRIVER.txt
+   □ Tải driver từ: https://docs.microsoft.com/en-us/sql/connect/jdbc
+   □ Copy vào: d:\DO_AN_QL_CAFE\hehehe\lib\
+
+
+Bước 3: TẠO DATABASE (1 phút)
+   □ Mở SSMS
+   □ Mở file: database_setup.sql
+   □ F5 (Execute)
+
+
+Bước 4: CHẠY CHƯƠNG TRÌNH (1 phút)
+   □ Windows: Double-click run.bat
+   □ Linux/Mac: ./run.sh
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+🎮 CÁCH SỬ DỤNG
+
+
+Đăng nhập:
+  Username: admin
+  Password: 123456789
+
+
+Sơ đồ chức năng:
+
+  MainFrame (Màn hình chính)
+  ├── Quản Lí Bàn
+  │   ├── Xem danh sách bàn
+  │   └── Thêm/Xóa bàn
+  │
+  ├── Gọi Món
+  │   ├── Chọn bàn
+  │   ├── Thêm món vào hóa đơn
+  │   ├── Tính tiền & điểm
+  │   └── Thanh toán
+  │
+  ├── Quản Lí Menu
+  │   ├── Xem danh sách món
+  │   ├── Thêm/Sửa/Xóa món
+  │   └── Áp dụng giảm giá
+  │
+  ├── Quản Lí Hóa Đơn
+  │   ├── Xem lịch sử
+  │   └── Lọc theo thời gian
+  │
+  └── Thống Kê
+      ├── Top món được gọi nhiều
+      └── Top món được gọi ít
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+🔑 TÍNH NĂNG CHÍNH
+
+
+✓ Quản lí bàn ăn (thêm/xóa/xem trạng thái)
+✓ Gọi món & tạo hóa đơn
+✓ Thanh toán (với giảm giá & điểm tích lũy)
+✓ Quản lí menu (thêm/sửa/xóa món)
+✓ Tích lũy điểm (1000đ = 1 điểm, dùng để giảm giá)
+✓ Giảm giá theo khung giờ
+✓ Chuyển bàn
+✓ Lịch sử hóa đơn (lọc theo ngày/tháng/quý/năm)
+✓ Thống kê (món được gọi nhiều/ít nhất)
+✓ Phân quyền (Admin & Nhân viên)
+✓ In hóa đơn
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+💾 DATABASE
+
+
+6 Tables:
+├── Tables           - Bàn ăn
+├── MenuItems        - Thực đơn
+├── Customers        - Khách hàng
+├── Invoices         - Hóa đơn
+├── InvoiceDetails   - Chi tiết hóa đơn
+└── Users            - Người dùng
+
+Data mẫu:
+├── 8 bàn ăn
+├── 15 món ăn/uống
+└── 3 người dùng
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+📋 CHECKLIST SETUP
+
+
+□ Cài JDK 11+
+  Kiểm tra: Mở CMD > javac -version (phải >= 11)
+
+□ Cài SQL Server 2019+ Express
+  Kiểm tra: Services > SQL Server (MSSQL*) = Running
+
+□ Cài SQL Server Management Studio (SSMS)
+  Download: https://docs.microsoft.com/en-us/sql/ssms
+
+□ Tải SQL Server JDBC Driver
+  Vào: lib/ folder
+  Kiểm tra: Thấy file mssql-jdbc-11.2.1.jre11.jar
+
+□ Chạy database_setup.sql
+  Kết quả: "Database created successfully!"
+
+□ Chạy run.bat hoặc run.sh
+  Kết quả: LoginFrame hiển thị
+
+□ Đăng nhập
+  Username: admin / Password: 123456789
+
+□ Xem MainFrame
+  Danh sách 8 bàn hiển thị ✓
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+❌ TROUBLESHOOTING
+
+
+Lỗi: "Cannot find SQL Server"
+→ Kiểm tra SQL Server chạy: Services > SQL Server status = Running
+→ Kiểm tra port: netstat -an | findstr :1433
+
+Lỗi: "Login failed for user sa"
+→ Kiểm tra password: 123456789
+→ Kiểm tra SQL Server: Mixed Authentication mode
+
+Lỗi: "No suitable driver found"
+→ Kiểm tra JDBC jar trong lib/ folder
+→ Tên file phải có: mssql-jdbc-*.jre11.jar
+
+Lỗi: "Failed to compile"
+→ Kiểm tra Java version: javac -version (>= 11)
+→ Kiểm tra path: set JAVA_HOME=C:\Program Files\Java\jdkXX
+
+Lỗi: "Database already exists"
+→ Xóa database CafeManager rồi chạy lại script
+→ Hoặc: SSMS > Databases > Right-click > Delete
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+📞 LIÊN HỆ & HỖ TRỢ
+
+
+Nếu gặp vấn đề:
+
+1. Đọc file: QUICK_START.txt (hướng dẫn 5 bước)
+2. Đọc file: HUONG_DAN_SETUP.txt (chi tiết 10 bước)
+3. Kiểm tra: TAI_JDBC_DRIVER.txt (cách tải JDBC)
+4. Google: Lỗi cụ thể + Java/SQL Server
+5. Ask: Stack Overflow, GitHub, Forums
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+📚 TÀI LIỆU
+
+
+Đọc theo thứ tự:
+
+1. ⭐ QUICK_START.txt        (5 phút) - Bắt đầu nhanh
+2. TAI_JDBC_DRIVER.txt       (5 phút) - Tải driver
+3. HUONG_DAN_SETUP.txt       (10 phút) - Chi tiết setup
+4. README.md                 (15 phút) - Tài liệu đầy đủ
+5. PROJECT_SUMMARY.txt       (5 phút) - Tóm tắt
+6. DAY_DU_CAC_FILE.txt       (3 phút) - Danh sách files
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+✨ HOÀN TẤT!
+
+
+Dự án đã hoàn thành 100%!
+
+Bạn có:
+  ✅ 20 file Java source code (hoàn chỉnh)
+  ✅ Database SQL (sẵn sàng chạy)
+  ✅ Script chạy (Windows & Linux)
+  ✅ Tài liệu hướng dẫn (4 file)
+  ✅ Dữ liệu mẫu (8 bàn, 15 món)
+
+Cần làm thêm:
+  1️⃣ Cài SQL Server 2019 Express (Free)
+  2️⃣ Cài Java JDK 11+
+  3️⃣ Tải JDBC Driver (mssql-jdbc-11.2.1.jre11.jar)
+  4️⃣ Copy JDBC vào lib/ folder
+  5️⃣ Chạy database_setup.sql
+  6️⃣ Chạy run.bat hoặc run.sh
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+🎯 BƯỚC TIẾP THEO NGAY BÂY GIỜ
+
+
+1. Đọc: QUICK_START.txt (5 phút)
+2. Làm: Tải JDBC Driver (10 phút)
+3. Làm: Chạy database_setup.sql (2 phút)
+4. Làm: Chạy run.bat hoặc run.sh (1 phút)
+5. Vui: Đăng nhập & Thử nghiệm!
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+
+                        ✨ XIN CHÚC MỪNG! ✨
+
+                   DỰ ÁN ĐÃ SẴN SÀNG SỬ DỤNG!
+
+═════════════════════════════════════════════════════════════════════════════

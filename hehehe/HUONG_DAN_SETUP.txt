@@ -1,0 +1,177 @@
+======================================
+HƯỚNG DẪN SETUP DỰ ÁN QUẢN LÍ CAFE
+======================================
+
+## 1. CÀI ĐẶT SQL SERVER
+
+### Nếu chưa cài SQL Server:
+- Tải SQL Server 2019 hoặc 2022 Express từ: https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+- Cài đặt với các cài đặt mặc định
+- Chọn "Mixed Authentication" (SQL Server and Windows Authentication)
+- Đặt password cho tài khoản SA là: 123456789
+
+### Kiểm tra cài đặt:
+- Mở SQL Server Management Studio (SSMS)
+- Kết nối với: Server name = localhost, Authentication = SQL Server, Username = sa, Password = 123456789
+
+## 2. TẠO DATABASE
+
+### Cách 1: Dùng SQL Script
+- Mở SQL Server Management Studio (SSMS)
+- New Query
+- Copy toàn bộ content của file: database_setup.sql
+- Paste vào New Query
+- Nhấn F5 hoặc nút Execute
+- Kiểm tra thông báo "Database and tables created successfully!"
+
+### Cách 2: Dùng Command Line
+- Mở Command Prompt (CMD)
+- Chuyển đến thư mục chứa file database_setup.sql
+- Chạy lệnh:
+  sqlcmd -S localhost -U sa -P 123456789 -i database_setup.sql
+
+## 3. TẢI JDK VÀ SQL SERVER DRIVER
+
+### Tải JDK 11 hoặc mới hơn:
+- Tải từ: https://www.oracle.com/java/technologies/downloads/
+- Cài đặt JDK
+- Thiết lập JAVA_HOME environment variable
+
+### Tải SQL Server JDBC Driver:
+- Tải từ: https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server
+- Giải nén vào thư mục lib/ của project
+- File: mssql-jdbc-x.x.x.jre11.jar
+
+## 4. BIÊN DỊCH VÀ CHẠY PROJECT
+
+### Cách 1: Dùng Compile và Run Manual
+```
+cd d:\DO_AN_QL_CAFE\hehehe
+
+# Compile tất cả file Java
+javac -cp "lib/*" -d bin src\com\cafe\config\*.java src\com\cafe\model\*.java src\com\cafe\dao\*.java src\com\cafe\util\*.java src\com\cafe\ui\*.java
+
+# Chạy ứng dụng
+java -cp "bin;lib/*" com.cafe.ui.LoginFrame
+```
+
+### Cách 2: Dùng IDE (Recommend)
+- Mở IDE (NetBeans, IntelliJ IDEA, Eclipse)
+- Import project
+- Add SQL Server JDBC Driver vào project libraries
+- Right click project > Build
+- Right click project > Run
+
+### Cách 3: Dùng Maven (Optional)
+- Tạo file pom.xml với dependency:
+  <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <version>11.2.0.jre11</version>
+  </dependency>
+
+## 5. ĐĂNG NHẬP VÀO HỆ THỐNG
+
+### Tài khoản Admin:
+- Username: admin
+- Password: 123456789
+
+### Tài khoản Nhân Viên:
+- Username: staff1 hoặc staff2
+- Password: 123456789
+
+## 6. TÍNH NĂNG CHÍNH
+
+### Màn Hình Chính:
+- Xem danh sách bàn
+- Thêm/Xóa bàn
+- Right click chuột phải để thêm/xóa bàn nhanh
+- Click vào bàn và chọn "Gọi Món"
+
+### Gọi Món:
+- Chọn loại món từ dropdown
+- Chọn món từ danh sách
+- Nhập số lượng
+- Nhấn "Thêm Vào Hóa Đơn"
+- Xem tổng tiền và điểm tích lũy
+- Lưu hóa đơn tạm hoặc thanh toán
+
+### Thanh Toán:
+- Nhập số điện thoại khách hàng
+- Chọn có dùng điểm hay không
+- Nhấn "Xác Nhận Thanh Toán"
+- Chọn in hóa đơn nếu cần
+
+### Quản Lí Menu:
+- Xem danh sách món
+- Thêm món mới
+- Sửa thông tin món
+- Xóa món (sẽ ẩn đi, không xóa hoàn toàn)
+
+### Quản Lí Hóa Đơn:
+- Xem danh sách hóa đơn theo ngày/tháng/quý/năm
+- Xem chi tiết từng hóa đơn
+
+### Thống Kê:
+- Top 10 món được gọi nhiều nhất
+- Top 10 món được gọi ít nhất
+
+### Chuyên Quyền Admin:
+- Thêm/Sửa người dùng
+- Quản lí nhân viên
+
+## 7. CẤU TRÚC THƯỞNG FILE
+
+project/
+├── src/
+│   └── com/cafe/
+│       ├── config/          (Database config)
+│       ├── model/           (Entity classes)
+│       ├── dao/             (Data Access Objects)
+│       ├── ui/              (User Interface frames)
+│       │   └── dialog/
+│       └── util/            (Utility classes)
+├── lib/                     (SQL Server JDBC Driver)
+├── database_setup.sql       (Database creation script)
+└── README.txt              (This file)
+
+## 8. TROUBLESHOOTING
+
+### Lỗi: "Cannot find SQL Server"
+- Kiểm tra SQL Server có chạy không: 
+  Services > SQL Server (MSSQL*) có trạng thái "Running"
+- Kiểm tra port 1433 có mở không: telnet localhost 1433
+
+### Lỗi: "Login failed for user 'sa'"
+- Kiểm tra password đúng: 123456789
+- Kiểm tra SQL Server có bật SQL Server Authentication mode không
+- Properties > Security > Server authentication > Mixed mode
+
+### Lỗi: "No suitable driver found"
+- Kiểm tra file jar trong thư mục lib/
+- Kiểm tra CLASSPATH có chứa jar file
+
+### Lỗi: "Cannot create database 'CafeManager'"
+- Kiểm tra user sa có quyền CREATE DATABASE không
+- Chạy SSMS với quyền Administrator
+
+## 9. DỮ LIỆU MẪU
+
+Database đã được cài sẵn:
+- 8 bàn ăn (Table 1-8)
+- 15 món ăn/uống (cà phê, nước uống, thức ăn)
+- 3 người dùng (1 Admin, 2 Nhân viên)
+
+Bạn có thể thêm/sửa/xóa dữ liệu thông qua giao diện
+
+## 10. LIÊN HỆ & HỖ TRỢ
+
+Nếu gặp vấn đề, kiểm tra:
+1. Database đã được tạo chưa
+2. SQL Server có chạy không
+3. JDBC Driver đã được thêm vào project chưa
+4. Java version >= 11
+
+======================================
+HOÀN TẤT CÀI ĐẶT!
+======================================

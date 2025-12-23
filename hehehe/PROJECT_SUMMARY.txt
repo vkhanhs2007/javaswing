@@ -1,0 +1,296 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                   PHẦN MỀM QUẢN LÍ QUÁN CAFE                               ║
+║                          PHIÊN BẢN 1.0                                    ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+CÔNG NGHỆ: Java Swing + SQL Server
+NGÀY TẠO: 2025
+TRẠNG THÁI: ✅ HOÀN THÀNH
+
+═══════════════════════════════════════════════════════════════════════════
+
+📋 TÓM TẮT DỰ ÁN
+
+Đây là một hệ thống quản lí quán cafe hoàn chỉnh được xây dựng bằng:
+- Java Swing: Giao diện người dùng
+- SQL Server: Lưu trữ dữ liệu
+- JDBC: Kết nối database
+- Tư pháp OOP: Code chuyên nghiệp
+
+═══════════════════════════════════════════════════════════════════════════
+
+📁 CẤU TRÚC THƯỞNG
+
+d:\DO_AN_QL_CAFE\hehehe\
+│
+├── 📂 src/com/cafe/
+│   ├── config/
+│   │   └── DatabaseConfig.java           (Kết nối SQL Server)
+│   │
+│   ├── model/
+│   │   ├── Table.java                    (Entity Bàn)
+│   │   ├── MenuItem.java                 (Entity Món ăn)
+│   │   ├── Invoice.java                  (Entity Hóa đơn)
+│   │   ├── InvoiceDetail.java            (Entity Chi tiết hóa đơn)
+│   │   ├── Customer.java                 (Entity Khách hàng)
+│   │   └── User.java                     (Entity Người dùng)
+│   │
+│   ├── dao/
+│   │   ├── TableDAO.java                 (Crud Bàn)
+│   │   ├── MenuItemDAO.java              (Crud Món ăn)
+│   │   ├── InvoiceDAO.java               (Crud Hóa đơn)
+│   │   ├── CustomerDAO.java              (Crud Khách hàng)
+│   │   └── UserDAO.java                  (Crud Người dùng)
+│   │
+│   ├── ui/
+│   │   ├── LoginFrame.java               (Màn hình đăng nhập)
+│   │   ├── MainFrame.java                (Màn hình chính)
+│   │   ├── OrderFrame.java               (Màn hình gọi món)
+│   │   ├── PaymentFrame.java             (Màn hình thanh toán)
+│   │   ├── MenuManagementFrame.java      (Quản lí menu)
+│   │   ├── InvoiceManagementFrame.java   (Quản lí hóa đơn)
+│   │   ├── StatisticsFrame.java          (Thống kê)
+│   │   └── UserManagementFrame.java      (Quản lí người dùng)
+│   │
+│   └── util/
+│       ├── UIUtils.java                  (Tiện ích UI)
+│       ├── DiscountUtils.java            (Tính toán giảm giá)
+│       └── ReportUtils.java              (Tính toán báo cáo)
+│
+├── 📂 lib/
+│   └── mssql-jdbc-xx.x.x.jre11.jar      (SQL Server Driver - CẦN TẢI)
+│
+├── 📄 database_setup.sql                 (Script tạo database)
+├── 📄 run.bat                            (Chạy trên Windows)
+├── 📄 run.sh                             (Chạy trên Linux/Mac)
+├── 📄 README.md                          (Tài liệu chi tiết)
+├── 📄 QUICK_START.txt                    (Bắt đầu nhanh)
+└── 📄 HUONG_DAN_SETUP.txt                (Hướng dẫn setup)
+
+═══════════════════════════════════════════════════════════════════════════
+
+🎯 CHỨC NĂNG CHÍNH
+
+1️⃣  QUẢN LÍ BÀN
+   ✓ Xem danh sách bàn (JTable)
+   ✓ Thêm bàn mới
+   ✓ Xóa bàn
+   ✓ Xem trạng thái (Trống/Đang phục vụ)
+   ✓ Right-click menu để thêm/xóa nhanh
+
+2️⃣  QUẢN LÍ THỰC ĐƠN
+   ✓ Xem danh sách 15+ món
+   ✓ Thêm món mới (tên, giá, loại, mô tả)
+   ✓ Sửa thông tin món
+   ✓ Xóa món (ẩn đi)
+   ✓ Lọc theo loại (Cà Phê, Nước, Thức ăn)
+   ✓ Giảm giá theo khung giờ
+
+3️⃣  GỌI MÓN & HÓA ĐƠN
+   ✓ Chọn bàn → Gọi món
+   ✓ Chọn loại mon từ dropdown
+   ✓ Click món → Nhập SL → Thêm vào hóa đơn
+   ✓ Xem tổng tiền tự động
+   ✓ Xem điểm tích lũy (1000đ = 1 điểm)
+   ✓ Lưu hóa đơn tạm (chưa thanh toán)
+   ✓ Xóa món khỏi hóa đơn
+
+4️⃣  THANH TOÁN
+   ✓ Xem tổng tiền
+   ✓ Áp dụng giảm giá %
+   ✓ Nhập thông tin khách (SĐT, tên)
+   ✓ Dùng điểm tích lũy để trừ giá
+   ✓ In hóa đơn (console)
+   ✓ Cập nhật trạng thái bàn → Trống
+
+5️⃣  QUẢN LÍ HÓA ĐƠN
+   ✓ Xem danh sách hóa đơn
+   ✓ Lọc theo thời gian (Ngày/Tháng/Quý/Năm)
+   ✓ Xem chi tiết từng hóa đơn
+   ✓ Thống kê doanh thu
+
+6️⃣  THỐNG KÊ
+   ✓ Top 10 món được gọi nhiều nhất
+   ✓ Top 10 món được gọi ít nhất
+   ✓ Tổng doanh thu theo thời gian
+
+7️⃣  ĐỀ MẬT & PHÂN QUYỀN
+   ✓ Đăng nhập người dùng
+   ✓ 2 vai trò: Admin & Nhân viên
+   ✓ Admin: Toàn quyền + Quản lí người dùng
+   ✓ Nhân viên: Chỉ gọi món & thanh toán
+   ✓ Đăng xuất
+
+8️⃣  TÍNH NĂNG BỔ SUNG
+   ✓ Mã tích lũy (cứ 1000đ = 1 điểm)
+   ✓ Sử dụng điểm để mua hàng
+   ✓ Giảm giá theo khung giờ
+   ✓ Chuyển bàn khi gọi món
+   ✓ Right-click để menu nhanh
+   ✓ Thống kê chi tiết
+
+═══════════════════════════════════════════════════════════════════════════
+
+🗄️ SCHEMA DATABASE
+
+[Tables] - Bàn ăn
+├── TableID (Primary Key)
+├── TableName
+├── Capacity
+└── Status (Trống/Đang phục vụ)
+
+[MenuItems] - Thực đơn
+├── MenuItemID (Primary Key)
+├── ItemName
+├── Category
+├── Price
+├── Description
+├── Available
+├── Discount (%)
+├── TimeDiscountStart
+└── TimeDiscountEnd
+
+[Customers] - Khách hàng
+├── CustomerID (Primary Key)
+├── PhoneNumber (Unique)
+├── CustomerName
+└── Points
+
+[Invoices] - Hóa đơn
+├── InvoiceID (Primary Key)
+├── TableID (Foreign Key)
+├── CreatedDate
+├── PaidDate
+├── TotalAmount
+├── DiscountAmount
+├── PointUsed
+└── Status (Tạm/Đã thanh toán)
+
+[InvoiceDetails] - Chi tiết hóa đơn
+├── DetailID (Primary Key)
+├── InvoiceID (Foreign Key)
+├── MenuItemID (Foreign Key)
+├── Quantity
+├── UnitPrice
+├── Discount
+└── Amount
+
+[Users] - Người dùng
+├── UserID (Primary Key)
+├── Username (Unique)
+├── Password
+├── Role (Admin/Nhân viên)
+├── FullName
+└── Active
+
+═══════════════════════════════════════════════════════════════════════════
+
+⚡ CÁCH TÁI NHANH NHẤT
+
+1. Cài SQL Server 2019 Express + JDK 11+
+2. Tải JDBC driver vào lib/
+3. Chạy database_setup.sql
+4. Double-click run.bat (Windows) hoặc ./run.sh (Linux)
+5. Đăng nhập: admin / 123456789
+6. Bắt đầu sử dụng!
+
+Chi tiết xem: QUICK_START.txt
+
+═══════════════════════════════════════════════════════════════════════════
+
+👤 TÀI KHOẢN MẬC ĐỊNH
+
+┌────────────────┬─────────────────┬──────────────┐
+│ Vai Trò        │ Username        │ Password     │
+├────────────────┼─────────────────┼──────────────┤
+│ Admin          │ admin           │ 123456789    │
+│ Nhân viên 1    │ staff1          │ 123456789    │
+│ Nhân viên 2    │ staff2          │ 123456789    │
+└────────────────┴─────────────────┴──────────────┘
+
+═══════════════════════════════════════════════════════════════════════════
+
+📊 DỮ LIỆU MẪU
+
+- 8 bàn (Bàn 1 - Bàn 8, sức chứa 2-8 người)
+- 15 món (5 cà phê, 5 nước uống, 5 thức ăn)
+- 3 người dùng (1 Admin, 2 Nhân viên)
+
+═══════════════════════════════════════════════════════════════════════════
+
+✅ KIỂM TRA DANH SÁCH
+
+Các file Java được tạo: ✓ 20 file
+├── config/         1 file
+├── model/          6 file
+├── dao/            5 file
+├── ui/             8 file
+└── util/           3 file
+
+Các script hỗ trợ: ✓ 4 file
+├── database_setup.sql
+├── run.bat
+├── run.sh
+└── Tài liệu
+
+═══════════════════════════════════════════════════════════════════════════
+
+🔧 CÁC CÔNG CỤKHÁC CẦN
+
+✓ Java JDK 11+ (64-bit)
+  Download: https://www.oracle.com/java/technologies/downloads/
+
+✓ SQL Server 2019/2022 Express (Free)
+  Download: https://www.microsoft.com/en-us/sql-server/sql-server-downloads
+
+✓ SQL Server Management Studio (SSMS) - Free
+  Download: https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms
+
+✓ SQL Server JDBC Driver (CẦN TẢI)
+  Download: https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server
+
+═══════════════════════════════════════════════════════════════════════════
+
+❌ KHẮC PHỤC LỖI THƯỜNG GẶP
+
+Lỗi                                  Giải Pháp
+─────────────────────────────────────────────────────────────
+Cannot find SQL Server               Kiểm tra SQL Server chạy ở localhost:1433
+Login failed for user 'sa'           Kiểm tra password: 123456789
+No suitable driver found              Copy .jar vào lib/ folder
+Failed to compile                     Kiểm tra Java version >= 11
+
+═══════════════════════════════════════════════════════════════════════════
+
+📚 TÀI LIỆU
+
+Main Files:
+├── README.md                  - Tài liệu chi tiết
+├── QUICK_START.txt            - Bắt đầu nhanh
+├── HUONG_DAN_SETUP.txt        - Hướng dẫn setup chi tiết
+└── Dossier này                - Tóm tắt toàn bộ
+
+═══════════════════════════════════════════════════════════════════════════
+
+💡 GỢI Ý MỞ RỘNG
+
+Có thể thêm các tính năng:
+- SMS/Email thông báo
+- QR Code scan
+- POS printer
+- Báo cáo Excel
+- Backup tự động
+- Multi-location
+- Loyalty program
+- Mobile app
+
+═══════════════════════════════════════════════════════════════════════════
+
+✨ THÀNH CÔNG! ✨
+
+Dự án đã sẵn sàng sử dụng!
+Hãy bắt đầu bằng cách đọc file: QUICK_START.txt
+
+Nếu gặp vấn đề, tham khảo: HUONG_DAN_SETUP.txt
+
+═══════════════════════════════════════════════════════════════════════════

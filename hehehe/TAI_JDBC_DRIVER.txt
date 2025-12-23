@@ -1,0 +1,133 @@
+╔════════════════════════════════════════════════════════════╗
+║  TẢI & CÀI ĐẶT SQL SERVER JDBC DRIVER                      ║
+╚════════════════════════════════════════════════════════════╝
+
+❗ CẦN THIẾT: File .jar này BẮTBUỘC phải có để chương trình chạy!
+
+═════════════════════════════════════════════════════════════════
+
+📥 BƯỚC 1: TẢI DRIVER
+
+Cách 1: Tải trực tiếp
+─────────────────────
+URL: https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server
+
+1. Mở link trên
+2. Nhấn nút "Download" phiên bản 11.2.1 (hoặc mới nhất)
+3. Chọn "Accept" nếu có popup
+4. File download: "sqljdbc_11.2.1_enu.tar.gz" hoặc ".zip"
+
+Cách 2: Tải từ GitHub (Dự phòng)
+────────────────────────────────
+URL: https://github.com/microsoft/mssql-jdbc/releases
+
+1. Nhấn vào release mới nhất
+2. Download "mssql-jdbc-xx.x.x.jre11.jar"
+
+═════════════════════════════════════════════════════════════════
+
+📦 BƯỚC 2: GIẢI NÉN FILE
+
+Nếu tải file .tar.gz (Linux/Mac/Windows):
+──────────────────────────────────────────
+1. Cài 7-Zip, WinRAR hoặc tương tự
+2. Chuột phải > Extract
+3. Tìm file: mssql-jdbc-11.2.1.jre11.jar
+
+Nếu tải file .zip:
+──────────────────
+1. Chuột phải > Extract All
+2. Tìm file: mssql-jdbc-11.2.1.jre11.jar
+
+═════════════════════════════════════════════════════════════════
+
+📂 BƯỚC 3: COPY VÀO THƯỞNG DỰ ÁN
+
+1. Tìm thư mục: d:\DO_AN_QL_CAFE\hehehe\lib\
+
+2. Copy file: mssql-jdbc-11.2.1.jre11.jar
+   vào thư mục: lib/
+
+Kết quả:
+d:\DO_AN_QL_CAFE\hehehe\lib\mssql-jdbc-11.2.1.jre11.jar
+
+═════════════════════════════════════════════════════════════════
+
+✅ KIỂM TRA CÀI ĐẶT
+
+Nếu thấy file như sau = ✓ THÀNH CÔNG:
+
+d:\DO_AN_QL_CAFE\hehehe\
+└── lib\
+    └── mssql-jdbc-11.2.1.jre11.jar
+
+═════════════════════════════════════════════════════════════════
+
+💻 KIỂM TRA VỀ LỖI
+
+Nếu nhận thông báo:
+"No suitable driver found for jdbc:sqlserver://localhost:1433"
+
+→ Có nghĩa file .jar chưa được copy đúng vị trí!
+→ Kiểm tra lại thư mục lib/
+→ Tên file phải đúng: mssql-jdbc-xx.x.x.jre11.jar
+
+═════════════════════════════════════════════════════════════════
+
+📝 LƯU Ý QUAN TRỌNG
+
+✓ Phải copy file vào thư mục lib/ của project
+✓ Không phải cài đặt toàn bộ source code SQL Server JDBC
+✓ Chỉ cần 1 file .jar
+✓ Tên file có thể khác (11.2.1, 11.2.2, 12.x, v.v)
+✓ Chỉ cần JRE 11 trở lên là được
+
+═════════════════════════════════════════════════════════════════
+
+🔍 KIỂM TRA PHIÊN BẢN TỪ COMMAND LINE
+
+Sau khi copy file, mở Command Prompt và chạy:
+
+dir lib\
+
+Nếu thấy:
+  Volume in drive D is ...
+  Directory of d:\DO_AN_QL_CAFE\hehehe\lib
+
+  26/12/2024  10:30 AM    4,523,456  mssql-jdbc-11.2.1.jre11.jar
+
+→ ✓ THÀNH CÔNG!
+
+═════════════════════════════════════════════════════════════════
+
+❓ FAQ
+
+Q: Tại sao cần JDBC Driver?
+A: Java không thể kết nối SQL Server mà không có driver!
+   JDBC Driver là thành phần trung gian giữa Java và SQL Server.
+
+Q: Phải cài toàn bộ SQL Server Source Code không?
+A: KHÔNG! Chỉ cần 1 file .jar là đủ!
+
+Q: Tên file có phải mssql-jdbc-11.2.1.jre11.jar không?
+A: Tên có thể khác (version khác nhau), nhưng phải kết thúc 
+   bằng ".jre11.jar" và chứa từ "mssql-jdbc"
+
+Q: Nó có phải là chương trình setup không?
+A: KHÔNG! Nó là file .jar (library), không phải .exe installer
+
+═════════════════════════════════════════════════════════════════
+
+🎯 RECAP
+
+1. Tải file: mssql-jdbc-xx.x.x.jre11.jar
+2. Giải nén nếu cần
+3. Copy vào: d:\DO_AN_QL_CAFE\hehehe\lib\
+4. Chạy run.bat hoặc run.sh
+5. ✓ Hoàn tất!
+
+═════════════════════════════════════════════════════════════════
+
+✨ Sau khi copy xong, tiếp tục quy trình setup!
+
+═════════════════════════════════════════════════════════════════
